@@ -199,54 +199,28 @@ identifierList
 /*
  * Following are the Lexer Rules used for tokenizing the recipe.
  */
-OBrace   : '{';
-CBrace   : '}';
-SColon   : ';';
-Or       : '||';
-And      : '&&';
-Equals   : '==';
-NEquals  : '!=';
-GTEquals : '>=';
-LTEquals : '<=';
-Match    : '=~';
-NotMatch : '!~';
-QuestionColon : '?:';
-StartsWith : '=^';
-NotStartsWith : '!^';
-EndsWith : '=$';
-NotEndsWith : '!$';
-PlusEqual : '+=';
-SubEqual : '-=';
-MulEqual : '*=';
-DivEqual : '/=';
-PerEqual : '%=';
-AndEqual : '&=';
-OrEqual  : '|=';
-XOREqual : '^=';
-Pow      : '^';
-External : '!';
-GT       : '>';
-LT       : '<';
-Add      : '+';
-Subtract : '-';
-Multiply : '*';
-Divide   : '/';
-Modulus  : '%';
-OBracket : '[';
-CBracket : ']';
-OParen   : '(';
-CParen   : ')';
-Assign   : '=';
-Comma    : ',';
-QMark    : '?';
-Colon    : ':';
-Dot      : '.';
-At       : '@';
-Pipe     : '|';
-BackSlash: '\\';
-Dollar   : '$';
-Tilde    : '~';
 
+// ===== Custom Lexer Rules for Byte Size and Time Duration =====
+
+BYTE_SIZE
+  : DIGITS ('.' DIGITS)? BYTE_UNIT
+  ;
+
+TIME_DURATION
+  : DIGITS ('.' DIGITS)? TIME_UNIT
+  ;
+
+fragment BYTE_UNIT
+  : ('k' | 'K' | 'm' | 'M' | 'g' | 'G' | 't' | 'T') ('b' | 'B')
+  ;
+
+fragment TIME_UNIT
+  : 'ms' | 's' | 'm' | 'h'
+  ;
+
+fragment DIGITS
+  : [0-9]+
+  ;
 
 Bool
  : 'true'
@@ -311,3 +285,51 @@ fragment Int
 fragment Digit
  : [0-9]
  ;
+
+OBrace   : '{';
+CBrace   : '}';
+SColon   : ';';
+Or       : '||';
+And      : '&&';
+Equals   : '==';
+NEquals  : '!=';
+GTEquals : '>=';
+LTEquals : '<=';
+Match    : '=~';
+NotMatch : '!~';
+QuestionColon : '?:';
+StartsWith : '=^';
+NotStartsWith : '!^';
+EndsWith : '=$';
+NotEndsWith : '!$';
+PlusEqual : '+=';
+SubEqual : '-=';
+MulEqual : '*=';
+DivEqual : '/=';
+PerEqual : '%=';
+AndEqual : '&=';
+OrEqual  : '|=';
+XOREqual : '^=';
+Pow      : '^';
+External : '!';
+GT       : '>';
+LT       : '<';
+Add      : '+';
+Subtract : '-';
+Multiply : '*';
+Divide   : '/';
+Modulus  : '%';
+OBracket : '[';
+CBracket : ']';
+OParen   : '(';
+CParen   : ')';
+Assign   : '=';
+Comma    : ',';
+QMark    : '?';
+Colon    : ':';
+Dot      : '.';
+At       : '@';
+Pipe     : '|';
+BackSlash: '\\';
+Dollar   : '$';
+Tilde    : '~';
